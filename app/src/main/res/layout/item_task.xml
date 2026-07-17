@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    item_task.xml
+    Layout de linha personalizado minimalista.
+    Contém: Checkbox (esquerda), Descrição (centro), Ícone Editar e Ícone Lixeira (direita).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="14dp"
+    android:gravity="center_vertical"
+    android:background="@android:color/transparent">
+
+    <!-- Checkbox minimalista -->
+    <CheckBox
+        android:id="@+id/checkboxTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="#111827"
+        android:layout_marginEnd="12dp" />
+
+    <!-- Descrição da tarefa -->
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="#111827"
+        android:textSize="16sp"
+        android:layout_marginEnd="12dp" />
+
+    <!-- Botão de Editar (Pencil icon) -->
+    <ImageView
+        android:id="@+id/buttonEditTask"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_edit"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Editar tarefa"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginEnd="4dp" />
+
+    <!-- Botão de Lixeira (Trash icon) -->
+    <ImageView
+        android:id="@+id/buttonDeleteTask"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_delete"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Excluir tarefa"
+        android:clickable="true"
+        android:focusable="true" />
+
+</LinearLayout>

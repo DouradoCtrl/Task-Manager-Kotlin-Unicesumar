@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_main.xml (Versão Estética Minimalista)
+    Uso de componentes do Material Design para um visual limpo, moderno e profissional.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://tools.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FAFAFA"
+    tools:context=".MainActivity">
+
+    <!-- Cabeçalho Minimalista -->
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tarefas"
+        android:textSize="28sp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#111827"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Campo de Entrada com Material Design Outline -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:boxStrokeColor="#111827"
+        app:hintTextColor="#6B7280"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusBottomEnd="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nova tarefa"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textColor="#111827"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Botão de Ação Minimalista -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonAddTask"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Adicionar"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#111827"
+        app:cornerRadius="8dp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Seção de Lista -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lista de tarefas"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="#6B7280"
+        android:layout_marginBottom="12dp" />
+
+    <ListView
+        android:id="@+id/listViewTasks"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="#E5E7EB"
+        android:dividerHeight="1dp"
+        android:scrollbars="none" />
+
+</LinearLayout>
