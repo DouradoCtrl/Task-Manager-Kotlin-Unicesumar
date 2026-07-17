@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.GerenciadoDeTarefasKotlin522026" parent="android:Theme.Material.Light.NoActionBar" />
+    <!--
+        Tema da aplicação herdando de Theme.MaterialComponents.Light.
+        Isso permite usar temas Material com Views tradicionais (não Compose)
+        e é compatível com AppCompatActivity.
+    -->
+    <style name="Theme.GerenciadoDeTarefasKotlin522026" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Cores primárias do tema -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Cor de destaque (FABs, switches, etc.) -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Barra de status -->
+        <item name="android:statusBarColor">@color/purple_700</item>
+    </style>
 </resources>
