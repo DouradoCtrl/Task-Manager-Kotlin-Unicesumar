@@ -1,47 +1,62 @@
 package com.example.gerenciadodetarefaskotlin52_2026
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.gerenciadodetarefaskotlin52_2026.ui.theme.GerenciadoDeTarefasKotlin522026Theme
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ListView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : ComponentActivity() {
+/**
+ * MainActivity — Controlador principal da tela
+ */
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var editTextTask: EditText
+    private lateinit var buttonAddTask: Button
+    private lateinit var listViewTasks: ListView
+
+    private val taskList: MutableList<Task> = mutableListOf()
+    private lateinit var taskAdapter: TaskAdapter
+    private var nextId: Int = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            GerenciadoDeTarefasKotlin522026Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        editTextTask = findViewById(R.id.editTextTask)
+        buttonAddTask = findViewById(R.id.buttonAddTask)
+        listViewTasks = findViewById(R.id.listViewTasks)
+
+        taskAdapter = TaskAdapter(this, taskList)
+        listViewTasks.adapter = taskAdapter
+
+        // Adiciona nova tarefa
+        buttonAddTask.setOnClickListener {
+            adicionarTarefa()
+        }
+
+        // Clique no item da lista também altera o estado do checkbox
+        listViewTasks.setOnItemClickListener { _, _, position, _ ->
+            val tarefaSelecionada = taskList[position]
+            tarefaSelecionada.isDone = !tarefaSelecionada.isDone
+            taskAdapter.notifyDataSetChanged()
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    private fun adicionarTarefa() {
+        val descricao = editTextTask.text.toString().trim()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GerenciadoDeTarefasKotlin522026Theme {
-        Greeting("Android")
+        if (descricao.isEmpty()) {
+            Toast.makeText(this, "Digite a descrição da tarefa.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val novaTarefa = Task(id = nextId++, description = descricao)
+        taskList.add(novaTarefa)
+        taskAdapter.notifyDataSetChanged()
+        
+        editTextTask.text.clear()
+        Toast.makeText(this, "Tarefa adicionada.", Toast.LENGTH_SHORT).show()
     }
 }
